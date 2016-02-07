@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class AdapterOrder extends BaseAdapter {
 
-    private final LayoutInflater inflator;
+    private LayoutInflater inflator;
     private Context context;
     private ArrayList<CustomerOrder> customerOrders;
 
@@ -57,7 +57,7 @@ public class AdapterOrder extends BaseAdapter {
             orderViewHolder = (OrderViewHolder) convertView.getTag();
         }
 
-        orderViewHolder.orderIdTextView.setText(customerOrders.get(position).getOrderID());
+        orderViewHolder.orderIdTextView.setText(customerOrders.get(position).getOrderID()+"");
         orderViewHolder.requiredDateTextView.setText(customerOrders.get(position).getRequiredDate());
         orderViewHolder.shipAddressTextView.setText(customerOrders.get(position).getShipAddress());
         orderViewHolder.shipCountryTextView.setText(customerOrders.get(position).getShipCountry());
