@@ -37,6 +37,7 @@ public class ActivityOrders extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.listView);
 
         adapterOrder = new AdapterOrder(this, customerOrders);
+        listView.setAdapter(adapterOrder);
     }
 
     @Override
