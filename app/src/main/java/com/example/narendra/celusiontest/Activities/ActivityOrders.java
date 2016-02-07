@@ -26,7 +26,7 @@ public class ActivityOrders extends AppCompatActivity {
 
     private ListView listView;
     private SQLiteDatabase db;
-    private ArrayList<CustomerOrder> customerOrders;
+    private ArrayList<CustomerOrder> customerOrders = new ArrayList<>();
     private AdapterOrder adapterOrder;
 
     @Override

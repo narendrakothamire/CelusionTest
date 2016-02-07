@@ -17,7 +17,7 @@ import de.greenrobot.dao.query.QueryBuilder;
 */
 public class OrderDao extends AbstractDao<CustomerOrder, Integer> {
 
-    public static final String TABLENAME = "ORDER";
+    public static final String TABLENAME = "CUSTOMER_ORDER";
 
     /**
      * Properties of entity CustomerOrder.<br/>
@@ -73,7 +73,7 @@ public class OrderDao extends AbstractDao<CustomerOrder, Integer> {
 
     /** Drops the underlying database table. */
     public static void dropTable(SQLiteDatabase db, boolean ifExists) {
-        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "'ORDER'";
+        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "'CUSTOMER_ORDER'";
         db.execSQL(sql);
     }
 

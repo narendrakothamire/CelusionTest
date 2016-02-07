@@ -1,5 +1,6 @@
 package com.example.narendra.celusiontest.Activities;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -95,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Intent intent = new Intent(MainActivity.this, ActivityOrders.class);
+        startActivity(intent);
     }
 
     private Response.ErrorListener errorListener = new Response.ErrorListener() {
