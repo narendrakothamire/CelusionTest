@@ -1,0 +1,62 @@
+package com.example.narendra.celusiontest.Activities;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.v7.app.AppCompatActivity;
+
+import android.widget.ListView;
+
+import com.example.narendra.celusiontest.Adapters.AdapterOrder;
+import com.example.narendra.celusiontest.R;
+
+import com.example.narendra.celusiontest.db.DaoMaster;
+import com.example.narendra.celusiontest.db.DaoSession;
+import com.example.narendra.celusiontest.db.CustomerOrder;
+import com.example.narendra.celusiontest.db.OrderDao;
+
+
+import java.util.ArrayList;
+
+
+/**
+ * Created by Narendra on 2/7/2016.
+ */
+public class ActivityOrders extends AppCompatActivity {
+
+    private ListView listView;
+    private SQLiteDatabase db;
+    private ArrayList<CustomerOrder> customerOrders;
+    private AdapterOrder adapterOrder;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        setContentView(R.layout.activity_main);
+
+        listView = (ListView)findViewById(R.id.listView);
+
+        adapterOrder = new AdapterOrder(this, customerOrders);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "celusion-db", null);
+        db = helper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(db);
+        DaoSession daoSession = daoMaster.newSession();
+
+        OrderDao orderDao = daoSession.getOrderDao();
+        customerOrders.clear();
+        customerOrders.addAll(orderDao.loadAll());
+        adapterOrder.notifyDataSetChanged();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        db.close();
+    }
+}
